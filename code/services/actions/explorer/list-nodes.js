@@ -1,11 +1,13 @@
 const handler = async function (ctx) {
   try {
     this.logger.info(ctx.action.name, ctx.params)
+
     const services = ctx.broker.registry.getServiceList({
       withActions: true,
       onlyAvailable: true,
       skipInternal: true
     })
+
     // group by nodeID
     const grouped = {}
     services.forEach(svc => {
@@ -17,7 +19,14 @@ const handler = async function (ctx) {
         actions: Object.keys(svc.actions || {})
       })
     })
-    return { success: true, result: grouped }
+
+    // transformer en array
+    const result = Object.entries(grouped).map(([nodeID, services]) => ({
+      nodeID,
+      services
+    }))
+
+    return { success: true, result }
   } catch (e) {
     /* istanbul ignore next */
     this.logger.error(ctx.action.name, e.message)
