@@ -1,0 +1,25 @@
+services:
+  nats:
+    image: 'nats:2.11.8'
+    container_name: 'nats'
+    command:
+      - '--name=nats'
+      - '--http_port=8222'
+      - '--sd=/data'
+    volumes:
+      - 'nats_data:/data'
+    networks:
+      - 'local'
+    ports:
+      - '4222:4222/tcp'
+      - '8222:8222/tcp'
+    deploy:
+      resources:
+        reservations:
+          memory: '128M'
+        limits:
+          memory: '128M'
+
+volumes:
+
+  nats_data: {}

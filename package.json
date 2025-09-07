@@ -1,0 +1,19 @@
+{
+  "name": "orka",
+  "version": "1.0.0",
+  "dependencies": {
+    "moleculer": "0.14.35",
+    "nats": "2.29.3",
+    "nconf": "0.13.0"
+  },
+  "devDependencies": {
+    "moleculer-repl": "0.7.4",
+    "npm-check-updates": "18.0.3",
+    "standard": "17.1.2"
+  },
+  "scripts": {
+    "ncu": "ncu",
+    "standard": "standard",
+    "start:dev": "moleculer-runner --repl --hot --config moleculer.config.js code/services"
+  }
+}

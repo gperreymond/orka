@@ -1,0 +1,8 @@
+name: 'orka'
+
+include:
+  - 'services/nats.yaml'
+  - 'services/postgres.yaml'
+
+networks:
+  local: {}
