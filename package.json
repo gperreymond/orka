@@ -15,5 +15,6 @@
     "ncu": "ncu",
     "standard": "standard",
     "start:dev": "moleculer-runner --repl --hot --config moleculer.config.js code/services"
-  }
+  },
+  "main": "start.js"
 }
