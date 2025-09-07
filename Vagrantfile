@@ -17,7 +17,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         d.name = vm_name
         d.remains_running = true
         d.has_ssh = false
-        d.env = { "APP_METADATA_NODENAME" => vm_name, "APP_NATS_HOSTNAME" => "192.168.1.103" }
+        d.create_args = [
+          "--privileged",
+          "--network=#{POKEMONS[i-1]}"
+        ]
+        d.env = {
+          "APP_METADATA_NODENAME" => vm_name, 
+          "APP_NATS_HOSTNAME" => "192.168.1.103" 
+        }
         d.cmd = ["sleep", "infinity"]
       end
     end

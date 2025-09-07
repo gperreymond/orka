@@ -4,12 +4,12 @@ const handler = async function (ctx) {
   try {
     this.logger.info(ctx.action.name, ctx.params)
     return new Promise((resolve) => {
-      exec('docker version', (error) => {
-        if (error) {
-          this.logger.error('Error checking Docker status:', error)
-          resolve({ success: true, result: false })
+      exec('docker version', (err) => {
+        if (err) {
+          this.logger.error(ctx.action.name, err.message)
+          resolve({ success: false, error: err.message })
         } else {
-          resolve({ success: true, result: true })
+          resolve({ success: true })
         }
       })
     })

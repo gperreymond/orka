@@ -1,2 +1,12 @@
+.vagrant
+infra
 node_modules
-dist
+scripts
+
+.gitignore
+.npmrc
+.tool-versions
+nconf.json
+README.md
+vagrant-provisioning.sh
+Vagrantfile

@@ -17,7 +17,7 @@ const handler = async function (ctx) {
         actions: Object.keys(svc.actions || {})
       })
     })
-    return { success: true,  result: grouped }
+    return { success: true, result: grouped }
   } catch (e) {
     /* istanbul ignore next */
     this.logger.error(ctx.action.name, e.message)
