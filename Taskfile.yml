@@ -24,7 +24,14 @@ tasks:
       - cmd: 'docker compose -f infra/docker-compose.yaml down'
   infra:destroy:
     cmds:
-      - cmd: 'echo "[INFO] destroy"'
+      - cmd: 'vagrant destroy --force'
+      - cmd: 'docker compose -f infra/docker-compose.yaml down'
+      - cmd: 'docker network rm ronflex'
+        ignore_error: true
+      - cmd: 'docker network rm pikachu'
+        ignore_error: true
+      - cmd: 'docker network rm bulbizarre'
+        ignore_error: true
   ronflex:start:
     cmds:
       - cmd: 'docker exec -it node-ronflex /vagrant/scripts/start.sh'
