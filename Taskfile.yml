@@ -1,0 +1,37 @@
+# https://taskfile.dev
+version: '3'
+
+tasks:
+
+  infra:up:
+    cmds:
+      - cmd: 'docker compose -f infra/docker-compose.yaml up -d'
+      - cmd: 'docker network create ronflex'
+        ignore_error: true
+      - cmd: 'docker network create pikachu'
+        ignore_error: true
+      - cmd: 'docker network create bulbizarre'
+        ignore_error: true
+      - cmd: 'vagrant up'
+      - cmd: 'docker exec -it node-ronflex /vagrant/scripts/provisioning.sh'
+      - cmd: 'docker exec -it node-pikachu /vagrant/scripts/provisioning.sh'
+      - cmd: 'docker exec -it node-bulbizarre /vagrant/scripts/provisioning.sh'
+  infra:down:
+    cmds:
+      - cmd: 'docker stop node-ronflex'
+      - cmd: 'docker stop node-pikachu'
+      - cmd: 'docker stop node-bulbizarre'
+      - cmd: 'docker compose -f infra/docker-compose.yaml down'
+  infra:destroy:
+    cmds:
+      - cmd: 'echo "[INFO] destroy"'
+  ronflex:start:
+    cmds:
+      - cmd: 'docker exec -it node-ronflex /vagrant/scripts/start.sh'
+  pikachu:start:
+    cmds:
+      - cmd: 'docker exec -it node-pikachu /vagrant/scripts/start.sh'
+  bulbizarre:start:
+    cmds:
+      - cmd: 'docker exec -it node-bulbizarre /vagrant/scripts/start.sh'
+
